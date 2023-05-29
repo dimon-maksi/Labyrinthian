@@ -1,0 +1,17 @@
+﻿<div class="row">
+
+    <div class="col min-vh-75 min-vw-75" style="max-height: 75vh;">
+        <DrawMaze Size="size"/>
+    </div>
+    <div class="col-3 bg-light min-vn-75">
+        <SideMenu Size="size" ValueChanged="HandleValueChanged"/>
+    </div>
+</div>
+
+@code{
+    private int size = 10;
+    private void HandleValueChanged(int newValue)
+    {
+        size = newValue;
+    }
+}

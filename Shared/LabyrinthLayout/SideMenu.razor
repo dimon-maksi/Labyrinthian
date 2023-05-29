@@ -1,0 +1,26 @@
+﻿<div class="input">
+    <div class="form-group">
+      <label for="sizeId">Size of maze</label>
+      <input type="number"
+        class="form-control" name="sizeId" id="sizeId" placeholder="Size" min="5" max="20" @bind="Size">
+    </div>
+</div>
+
+<div style="display: flex; justify-content: center; flex-wrap: wrap;">
+    <button type="button" class="btn btn-primary m-3" @onclick="UpdateValue">Generate</button>
+</div>
+
+@code {
+    [Parameter]
+    public int Size { get; set; }
+
+    [Parameter]
+    public EventCallback<int> ValueChanged { get; set; }
+
+    private async Task UpdateValue()
+    {
+        if(Size < 5) await ValueChanged.InvokeAsync(5);
+        else if(Size > 20) await ValueChanged.InvokeAsync(20);
+        else await ValueChanged.InvokeAsync(Size);
+    }
+}
